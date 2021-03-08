@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:fitsSystemWindows="true"
+    tools:context=".ui.activities.EditTaskActivity"
+    tools:openDrawer="start">
+
+    <RelativeLayout
+        android:id="@+id/taskFirstLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:animateLayoutChanges="true">
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/toolbar" />
+
+        <RelativeLayout
+            android:id="@+id/header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/toolbar"
+            android:background="@android:color/white"
+            android:padding="5dp"
+            app:layout_collapseMode="parallax">
+
+            <LinearLayout
+                android:id="@+id/headerLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:animateLayoutChanges="true"
+                android:background="@drawable/round_corners_task"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <TextView
+                    android:id="@+id/tvWorkThings"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center"
+                    android:text="Task Item Info"
+                    android:textColor="@color/colorAccentDark"
+                    android:textSize="8pt"
+                    android:textStyle="bold" />
+            </LinearLayout>
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/headerLayout"
+                android:layout_marginBottom="5dp"
+                android:padding="10dp"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/tvTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center"
+                    android:text="Title"
+                    android:textColor="@color/colorAccentDark"
+                    android:textSize="6pt"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/txtTaskTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginStart="5dp"
+                    android:background="@drawable/round_corners_task"
+                    android:hint="Task Item Title"
+                    android:padding="10dp"/>
+                <TextView
+                    android:id="@+id/tvDescription"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center"
+                    android:text="Description"
+                    android:textColor="@color/colorAccentDark"
+                    android:textSize="6pt"
+                    android:textStyle="bold" />
+                <EditText
+                    android:id="@+id/txtTaskDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginStart="5dp"
+                    android:background="@drawable/round_corners_task"
+                    android:hint="Task Item Description"
+                    android:padding="10dp"/>
+
+
+               <TextView
+                    android:id="@+id/tvStatus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center"
+                    android:text="Is Task Complete?"
+                    android:textColor="@color/colorAccentDark"
+                    android:textSize="6pt"
+                    android:textStyle="bold" />
+
+                <RadioGroup
+                    android:id="@+id/idRadioGroupStatus"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal"
+                    android:checkedButton="@id/idNo"
+                    >
+
+                    <RadioButton
+                        android:id="@+id/idYes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/colorPrimary"
+                        android:text="Yes"
+                        android:textColor="@color/radio_button_state" />
+
+                    <RadioButton
+                        android:id="@+id/idNo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/colorPrimary"
+                        android:text="No"
+                        android:textColor="@color/radio_button_state" />
+
+                </RadioGroup>
+
+                <TextView
+                    android:id="@+id/tvPriority"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center"
+                    android:text="Priority"
+                    android:textColor="@color/colorAccentDark"
+                    android:textSize="6pt"
+                    android:textStyle="bold" />
+
+                <RadioGroup
+                    android:id="@+id/idRadioGroupPriority"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal"
+                    android:checkedButton="@id/idLow"
+                    >
+
+                    <RadioButton
+                        android:id="@+id/idLow"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/colorPrimary"
+                        android:text="Low"
+                        android:textColor="@color/radio_button_state" />
+
+                    <RadioButton
+                        android:id="@+id/idMedium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/colorPrimary"
+                        android:text="Medium"
+                        android:textColor="@color/radio_button_state" />
+                    <RadioButton
+                        android:id="@+id/idHigh"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/colorPrimary"
+                        android:text="High"
+                        android:checked="true"
+                        android:textColor="@color/radio_button_state" />
+
+                </RadioGroup>
+
+
+                <Button
+                    android:id="@+id/btnEditTask"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="50dp"
+                    android:layout_marginEnd="5dp"
+                    android:background="@drawable/button_gradiant"
+                    android:padding="10dp"
+                    android:text="Update"
+                    android:textColor="@color/colorAccentDark"
+                    android:textSize="6pt"/>
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+
+</androidx.drawerlayout.widget.DrawerLayout>

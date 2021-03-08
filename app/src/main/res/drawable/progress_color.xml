@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/round_corners_task" />
+    <item>
+        <shape android:shape="ring"
+            android:innerRadiusRatio="3.4"
+            android:thicknessRatio="6.0">
+            <gradient
+                android:useLevel="true"
+                android:type="sweep"
+                android:startColor="#ff000000"
+                android:endColor="#ffffffff" />
+        </shape>
+    </item>
+    <item>
+        <rotate
+            android:pivotX="50%" android:pivotY="50%"
+            android:fromDegrees="0" android:toDegrees="360"
+            android:drawable="@drawable/round_corners_task" />
+    </item>
+</layer-list>
