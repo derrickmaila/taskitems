@@ -1,0 +1,150 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/menuHeader"
+        android:layout_width="match_parent"
+        android:layout_height="130dp"
+        android:background="@color/colorPrimary"
+        android:padding="20dp">
+
+        <TextView
+            android:id="@+id/tvFullName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Welcome"
+            android:textColor="@android:color/white"
+            android:textSize="7pt"
+            android:textStyle="bold"
+            android:visibility="visible" />
+
+        <View
+            android:id="@+id/lineView"
+            android:layout_width="300dp"
+            android:layout_height="1dp"
+            android:layout_below="@+id/tvFullName"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@android:color/white" />
+
+        <TextView
+            android:id="@+id/tvEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/lineView"
+            android:layout_alignParentLeft="true"
+            android:clickable="true"
+            android:text="test@gmail.com"
+            android:textColor="@android:color/white"
+            android:textSize="7pt" />
+
+        <TextView
+            android:id="@+id/tvCellphone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvEmail"
+            android:layout_alignParentLeft="true"
+            android:text="0798415263"
+            android:textColor="@android:color/white"
+            android:textSize="7pt" />
+
+        <TextView
+            android:id="@+id/tVEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:clickable="true"
+            android:text="edit"
+            android:visibility="gone"
+            android:textColor="@android:color/white"
+            android:textSize="7pt" />
+
+        <Button
+            android:background="@android:color/transparent"
+            android:id="@+id/btnAccount"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:background="@android:color/background_light"
+        android:layout_height="match_parent"
+        android:layout_marginTop="140dp"
+        android:layout_width="match_parent"
+        android:visibility="gone">
+
+        <com.google.android.material.navigation.NavigationView
+            android:background="@color/colorAccentLight"
+            android:fitsSystemWindows="true"
+            android:id="@+id/nav_view"
+            android:layout_gravity="start"
+            android:layout_height="match_parent"
+            android:layout_width="280dp"
+            android:textColor="@color/colorPrimary"
+            app:itemIconTint="@color/colorAccentDark"
+            app:itemTextColor="@color/colorAccentMed"
+            app:menu="@menu/left_sidebar" />
+    </RelativeLayout>
+
+
+
+    <LinearLayout
+        android:layout_below="@+id/menuHeader"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <RelativeLayout
+            android:layout_height="40dp"
+            android:layout_width="match_parent">
+
+            <TextView
+                android:gravity="center_vertical"
+                android:id="@+id/tvMyHome"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:text="Home"
+                android:textColor="@color/colorAccentDark" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_height="40dp"
+            android:layout_width="match_parent">
+
+            <TextView
+                android:gravity="center_vertical"
+                android:id="@+id/tvMyAccount"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:text="my account"
+                android:textColor="@color/colorAccentDark" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_height="40dp"
+            android:layout_width="match_parent">
+
+            <TextView
+                android:gravity="center_vertical"
+                android:id="@+id/tvLogout"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:text="sign out"
+                android:textColor="@color/colorAccentDark" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

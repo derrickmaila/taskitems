@@ -2,29 +2,39 @@ package com.derrick.dstvtodolist.ui.activities;
 
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Paint;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
+
 import com.derrick.dstvtodolist.R;
 import com.derrick.dstvtodolist.adapters.TaskAdapter;
 import com.derrick.dstvtodolist.databinding.ActivityTaskBinding;
 import com.derrick.dstvtodolist.models.Task;
 import com.derrick.dstvtodolist.modelviews.TaskViewModel;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class TaskActivity extends AppCompatActivity {
@@ -36,6 +46,9 @@ public class TaskActivity extends AppCompatActivity {
     public static final int TASK_ACTIVITY_REQUEST_CODE = 1;
     private TaskAdapter taskAdapter;
     private AlertDialog.Builder builder;
+    private ActionBarDrawerToggle actionBarDrawerToggle;
+    private DrawerLayout drawer;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,15 +57,21 @@ public class TaskActivity extends AppCompatActivity {
         View view = activityTaskBinding.getRoot();
         setContentView(view);
 
-        activityTaskBinding.toolbar.toolTitle.setText(getString(R.string.todoTitle));
+        toolbar = findViewById(R.id.toolbar);
+        drawer = findViewById(R.id.drawer_layout);
+        actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.openDrawer, R.string.closeDrawer);
+        drawer.addDrawerListener(actionBarDrawerToggle);
+        actionBarDrawerToggle.syncState();
+        setSupportActionBar(toolbar);
 
+        //activityTaskBinding.toolbar.toolTitle.setText(getString(R.string.todoTitle));
         activityTaskBinding.recyclerView.setHasFixedSize(true);
         taskAdapter = new TaskAdapter(new TaskAdapter.WordDiff());
         activityTaskBinding.recyclerView.setAdapter(taskAdapter);
         activityTaskBinding.recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         Paint paint = new Paint();
-        paint.setColor(ContextCompat.getColor(this,android.R.color.background_dark));
+        paint.setColor(ContextCompat.getColor(this, android.R.color.background_dark));
         paint.setFlags(Paint.UNDERLINE_TEXT_FLAG);
         activityTaskBinding.tvWorkThings.setPaintFlags(paint.getFlags());
 
@@ -170,6 +189,30 @@ public class TaskActivity extends AppCompatActivity {
         });
 
 
+        findViewById(R.id.tvMyHome).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               Intent intent = new Intent(TaskActivity.this,TaskActivity.class);
+               startActivity(intent);
+               finish();
+            }
+        });
+
+        findViewById(R.id.tvMyAccount).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(TaskActivity.this, "You clicked my account", Toast.LENGTH_SHORT).show();
+            }
+        });
+        findViewById(R.id.tvLogout).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(TaskActivity.this, "You clicked sign out", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+
     }
 
     private void calculatePercentage(List<Task> tasks) {
@@ -196,19 +239,46 @@ public class TaskActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.menu, menu);
+        menuInflater.inflate(R.menu.add_task_menu, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+
+//        if (item != null && item.getItemId() == android.R.id.home) {
+//            toggle();
+//        }
         switch (item.getItemId()) {
+            case android.R.id.home:
+                toggle();
+                return true;
             case R.id.menuDeleteAllTasks:
-                taskViewModel.deleteAllTasks();
-                Toast.makeText(this, "All Task Items are deleted", Toast.LENGTH_SHORT).show();
+                LiveData<List<Task>> alltasks = taskViewModel.getAllTasks();
+
+                if(alltasks.getValue().size() > 0){
+                    taskViewModel.deleteAllTasks();
+                    Toast.makeText(this, "All Task Items are deleted", Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(this, "There are no tasks to be deleted.", Toast.LENGTH_SHORT).show();
+                }
+
+               /*
+                 taskViewModel.getAllTasks().observe(this, tasks -> {
+                     if(tasks.size() > 0){
+                         taskViewModel.deleteAllTasks();
+                         Toast.makeText(this, "All Task Items are deleted", Toast.LENGTH_SHORT).show();
+                     }else{
+                         Toast.makeText(this, "There are no tasks to be deleted.", Toast.LENGTH_SHORT).show();
+                     }
+                 });*/
+
                 return true;
             case R.id.menuAbout:
-                Toast.makeText(this, "You clicked about", Toast.LENGTH_SHORT).show();
+                String url = "https://now.dstv.com/";
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(url));
+                startActivity(i);
                 return true;
             case R.id.menuSettings:
                 Toast.makeText(this, "You clicked settings", Toast.LENGTH_SHORT).show();
@@ -217,6 +287,14 @@ public class TaskActivity extends AppCompatActivity {
                 Toast.makeText(this, "You clicked logout", Toast.LENGTH_SHORT).show();
             default:
                 return super.onOptionsItemSelected(item);
+        }
+    }
+
+    private void toggle() {
+        if (drawer.isDrawerVisible(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            drawer.openDrawer(GravityCompat.START);
         }
     }
 

@@ -212,5 +212,20 @@
 
     </RelativeLayout>
 
+    <!-- Side Bar -->
+
+    <RelativeLayout
+        android:layout_width="280dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="left|start"
+        android:background="@android:color/white"
+        android:orientation="horizontal">
+
+        <include layout="@layout/side_menu_items" />
+
+    </RelativeLayout>
+
+    <!-- Side Bar -->
+
 
 </androidx.drawerlayout.widget.DrawerLayout>

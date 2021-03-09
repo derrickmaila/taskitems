@@ -27,7 +27,10 @@ public class TaskAdapter extends ListAdapter<Task, TaskAdapter.TaskHolder> {
         }
         @Override
         public boolean areContentsTheSame(@NonNull Task oldTask, @NonNull Task newTask) {
-            return oldTask.getTitle().equals(newTask.getTitle());
+            return oldTask.getTitle().equals(newTask.getTitle()) &&
+                    oldTask.getDescription().equals(newTask.getDescription()) &&
+                    oldTask.getDescription().equals(newTask.getStatus()) &&
+                    oldTask.getPriority() == newTask.getPriority();
         }
     };
 
@@ -52,6 +55,8 @@ public class TaskAdapter extends ListAdapter<Task, TaskAdapter.TaskHolder> {
         }else{
             holder.chkComplete.setChecked(false);
             holder.chkComplete.setEnabled(true);
+            holder.taskTitle.setPaintFlags( holder.taskTitle.getPaintFlags() & (~ Paint.STRIKE_THRU_TEXT_FLAG));
+            holder.taskDescription.setPaintFlags( holder.taskDescription.getPaintFlags() & (~ Paint.STRIKE_THRU_TEXT_FLAG));
         }
     }
     public Task getTaskAt(int position) {

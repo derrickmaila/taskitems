@@ -8,7 +8,7 @@
     android:background="@android:color/white"
     android:fitsSystemWindows="true"
     tools:context=".ui.activities.TaskActivity"
-    tools:openDrawer="start">
+    tools:openDrawer="end">
 
     <RelativeLayout
         android:id="@+id/taskFirstLayout"
@@ -212,6 +212,20 @@
         </RelativeLayout>
 
     </RelativeLayout>
+
+    <!-- Side Bar -->
+    <RelativeLayout
+        android:layout_width="280dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="left|start"
+        android:background="@android:color/white"
+        android:orientation="horizontal">
+
+        <include layout="@layout/side_menu_items" />
+
+    </RelativeLayout>
+
+    <!-- Side Bar -->
 
 
 </androidx.drawerlayout.widget.DrawerLayout>

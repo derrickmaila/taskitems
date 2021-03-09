@@ -1,7 +1,9 @@
 <resources>
-    <string name="app_name">Dstv Todo List</string>
+    <string name="app_name">To Do List</string>
     <string name="percentageSymbol">&#x0025;</string>
     <string name="todoTitle">To Do List</string>
     <string name="add_new_item">Add New Item</string>
     <string name="add_item">Add Item</string>
+    <string name="openDrawer">open_drawer</string>
+    <string name="closeDrawer">close_drawer</string>
 </resources>
